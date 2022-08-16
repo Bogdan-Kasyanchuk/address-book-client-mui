@@ -14,39 +14,30 @@ import InputIcon from '@mui/icons-material/Input';
 const AuthNav = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = event => {
+  const openNavMenu = event => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const closeNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const styleLink = {
+    fontSize: '18px',
+    color: 'inherit',
+    textDecoration: 'none',
+  };
+
   return (
     <>
       <List sx={{ display: { xs: 'none', md: 'flex' } }}>
         <ListItem>
-          <Link
-            component={RouterLink}
-            to="/register"
-            sx={{
-              fontSize: '18px',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <Link component={RouterLink} to="/register" sx={styleLink}>
             Register
           </Link>
         </ListItem>
         <ListItem sx={{ padding: '8px 0 8px 16px' }}>
-          <Link
-            component={RouterLink}
-            to="/login"
-            sx={{
-              fontSize: '18px',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <Link component={RouterLink} to="/login" sx={styleLink}>
             Login
           </Link>
         </ListItem>
@@ -57,7 +48,7 @@ const AuthNav = () => {
           aria-label="menu"
           aria-controls="menu-appbar"
           aria-haspopup="true"
-          onClick={handleOpenNavMenu}
+          onClick={openNavMenu}
           sx={{ padding: '10px 0 10px 10px', color: 'inherit' }}
         >
           <InputIcon sx={{ width: '24px', height: '24px' }} />
@@ -67,35 +58,19 @@ const AuthNav = () => {
           anchorEl={anchorElNav}
           keepMounted
           open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
+          onClose={closeNavMenu}
           sx={{
             display: { xs: 'block', md: 'none' },
             marginTop: { xs: '6px', sm: '10px' },
           }}
         >
-          <MenuItem onClick={handleCloseNavMenu}>
-            <Link
-              component={RouterLink}
-              to="/register"
-              sx={{
-                fontSize: '18px',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
+          <MenuItem onClick={closeNavMenu}>
+            <Link component={RouterLink} to="/register" sx={styleLink}>
               Register
             </Link>
           </MenuItem>
-          <MenuItem onClick={handleCloseNavMenu}>
-            <Link
-              component={RouterLink}
-              to="/login"
-              sx={{
-                fontSize: '18px',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
+          <MenuItem onClick={closeNavMenu}>
+            <Link component={RouterLink} to="/login" sx={styleLink}>
               Login
             </Link>
           </MenuItem>

@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
+import { Box, Button, TextField } from '@mui/material';
 import { getUserName } from 'redux/auth/auth-selectors';
 import * as operations from 'redux/auth/auth-operations';
-import SubTitle from 'components/SubTitle/SubTitle';
+import SubTitle from 'components/SubTitle';
 import AvatarEdit from 'components/AvatarEdit';
 import Form from 'components/Form';
 import loadAvatarService from 'service/loadAvatarService';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
-import { Box, Button, TextField } from '@mui/material';
 
 const UserEdit = ({ userAvatar, closeModalEdit }) => {
   const dispatch = useDispatch();
@@ -57,6 +57,11 @@ const UserEdit = ({ userAvatar, closeModalEdit }) => {
     closeModalEdit();
   };
 
+  const styleButton = {
+    fontSize: '14px',
+    lineHeight: '1.7',
+  };
+
   return (
     <Box sx={{ padding: '20px' }}>
       <SubTitle>Editing user</SubTitle>
@@ -66,7 +71,7 @@ const UserEdit = ({ userAvatar, closeModalEdit }) => {
         userName={userName}
         deleteAvatar={deleteAvatar}
         loadAvatar={loadAvatar}
-      ></AvatarEdit>
+      />
       <Form formHundler={handleSubmit(editUser)}>
         <Controller
           control={control}
@@ -81,11 +86,11 @@ const UserEdit = ({ userAvatar, closeModalEdit }) => {
               label="Name"
               variant="outlined"
               margin="normal"
-              onChange={e => field.onChange(e)}
-              error={!!errors.name?.message}
-              helperText={errors.name?.message}
               title={TITLE_FORM.NAME}
               value={field.value}
+              error={!!errors.name?.message}
+              helperText={errors.name?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -97,18 +102,18 @@ const UserEdit = ({ userAvatar, closeModalEdit }) => {
           }}
         >
           <Button
-            disabled={!buttonDisabled}
-            type="submit"
-            sx={{ minWidth: '0', fontSize: '14px', lineHeight: '1.7' }}
             size="small"
+            type="submit"
             variant="contained"
+            disabled={!buttonDisabled}
+            sx={{ minWidth: '0', ...styleButton }}
           >
             Ok
           </Button>
           <Button
-            sx={{ fontSize: '14px', lineHeight: '1.7' }}
             size="small"
             variant="contained"
+            sx={styleButton}
             onClick={closeModal}
           >
             Cancel

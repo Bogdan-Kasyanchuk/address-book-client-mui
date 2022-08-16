@@ -4,10 +4,12 @@ import toast from 'react-hot-toast';
 
 export const getContact = createAsyncThunk(
   'contact/get',
-  async (favorite, { rejectWithValue }) => {
+  async ({ page = 1, favorite = '' }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/contacts?favorite=${favorite ?? ''}`);
-      return data.payload.contacts;
+      const { data } = await axios.get(
+        `/contacts?page=${page}&limit=12&favorite=${favorite}`,
+      );
+      return data.payload;
     } catch (error) {
       toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);

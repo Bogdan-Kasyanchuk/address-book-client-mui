@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
+import { Box, Button, TextField } from '@mui/material';
 import * as operations from 'redux/contacts/contacts-operations';
 import { getContacts } from 'redux/contacts/contacts-selectors';
-import SubTitle from 'components/SubTitle/SubTitle';
+import SubTitle from 'components/SubTitle';
 import AvatarEdit from 'components/AvatarEdit';
 import Form from 'components/Form';
 import { existContactUpdate } from 'service/existContactService';
 import loadAvatarService from 'service/loadAvatarService';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
-import { Box, Button, TextField } from '@mui/material';
 
 const ContactEdit = ({ element, closeModalEdit }) => {
   const dispatch = useDispatch();
@@ -79,6 +79,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
     closeModalEdit();
   };
 
+  const styleButton = {
+    fontSize: '14px',
+    lineHeight: '1.7',
+  };
+
   return (
     <Box sx={{ padding: '20px' }}>
       <SubTitle>Editing contact</SubTitle>
@@ -88,7 +93,7 @@ const ContactEdit = ({ element, closeModalEdit }) => {
         userName={element.name}
         deleteAvatar={deleteAvatar}
         loadAvatar={loadAvatar}
-      ></AvatarEdit>
+      />
       <Form formHundler={handleSubmit(editContact)}>
         <Controller
           control={control}
@@ -103,11 +108,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
               label="Name"
               variant="outlined"
               margin="normal"
-              onChange={e => field.onChange(e)}
-              error={!!errors.name?.message}
-              helperText={errors.name?.message}
               title={TITLE_FORM.NAME}
               value={field.value}
+              error={!!errors.name?.message}
+              helperText={errors.name?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -124,11 +129,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
               label="Phone"
               variant="outlined"
               margin="normal"
-              onChange={e => field.onChange(e)}
-              error={!!errors.phone?.message}
-              helperText={errors.phone?.message}
               title={TITLE_FORM.PHONE}
               value={field.value}
+              error={!!errors.phone?.message}
+              helperText={errors.phone?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -145,11 +150,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
               label="Email"
               variant="outlined"
               margin="normal"
-              onChange={e => field.onChange(e)}
-              error={!!errors.email?.message}
-              helperText={errors.email?.message}
               title={TITLE_FORM.EMAIL}
               value={field.value}
+              error={!!errors.email?.message}
+              helperText={errors.email?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -167,11 +172,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
               label="Address"
               variant="outlined"
               margin="normal"
-              onChange={e => field.onChange(e)}
-              error={!!errors.address?.message}
-              helperText={errors.address?.message}
               title={TITLE_FORM.ADDRES}
               value={field.value}
+              error={!!errors.address?.message}
+              helperText={errors.address?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -190,11 +195,11 @@ const ContactEdit = ({ element, closeModalEdit }) => {
               margin="normal"
               multiline
               maxRows={3}
-              onChange={e => field.onChange(e)}
-              error={!!errors.other?.message}
-              helperText={errors.other?.message}
               title={TITLE_FORM.OTHER}
               value={field.value}
+              error={!!errors.other?.message}
+              helperText={errors.other?.message}
+              onChange={e => field.onChange(e)}
             />
           )}
         />
@@ -208,17 +213,17 @@ const ContactEdit = ({ element, closeModalEdit }) => {
           <Button
             disabled={!buttonDisabled}
             type="submit"
-            sx={{ minWidth: '0', fontSize: '14px', lineHeight: '1.7' }}
             size="small"
             variant="contained"
+            sx={{ minWidth: '0', ...styleButton }}
           >
             Ok
           </Button>
           <Button
-            sx={{ fontSize: '14px', lineHeight: '1.7' }}
             size="small"
             variant="contained"
             onClick={closeModal}
+            sx={styleButton}
           >
             Cancel
           </Button>
@@ -237,7 +242,7 @@ ContactEdit.propTypes = {
     address: PropTypes.string,
     other: PropTypes.string,
   }),
-  closeModalDelete: PropTypes.func,
+  closeModalEdit: PropTypes.func,
 };
 
 export default ContactEdit;

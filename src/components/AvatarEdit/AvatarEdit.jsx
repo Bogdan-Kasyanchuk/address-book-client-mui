@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Box, Avatar, Button } from '@mui/material';
 
 const AvatarEdit = ({
@@ -7,6 +8,11 @@ const AvatarEdit = ({
   deleteAvatar,
   loadAvatar,
 }) => {
+  const styleButton = {
+    fontSize: '14px',
+    lineHeight: '1.7',
+  };
+
   return (
     <Box
       sx={{
@@ -34,18 +40,18 @@ const AvatarEdit = ({
         }}
       >
         <Button
-          sx={{ minWidth: '0', fontSize: '14px', lineHeight: '1.7' }}
           size="small"
           variant="contained"
           onClick={deleteAvatar}
+          sx={{ minWidth: '0', ...styleButton }}
         >
           Delete
         </Button>
         <Button
-          sx={{ fontSize: '14px', lineHeight: '1.7' }}
           size="small"
           variant="contained"
           component="label"
+          sx={styleButton}
         >
           Upload
           <input hidden accept="image/*" type="file" onChange={loadAvatar} />
@@ -53,6 +59,10 @@ const AvatarEdit = ({
       </Box>
     </Box>
   );
+};
+
+AvatarEdit.propTypes = {
+  loadAvatar: PropTypes.func,
 };
 
 export default AvatarEdit;

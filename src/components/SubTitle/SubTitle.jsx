@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 
 const SubTitle = ({ children }) => {
@@ -13,10 +12,6 @@ const SubTitle = ({ children }) => {
       {children}
     </Typography>
   );
-};
-
-SubTitle.propTypes = {
-  children: PropTypes.node,
 };
 
 export default SubTitle;

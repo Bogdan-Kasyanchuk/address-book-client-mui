@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Box, Typography, Button } from '@mui/material';
 import * as operations from 'redux/contacts/contacts-operations';
 import { getFilter } from 'redux/contacts/contacts-selectors';
-import * as actions from 'redux/contacts/contacts-action';
-import { Box, Typography, Button } from '@mui/material';
+import { filterContact } from 'redux/contacts/contacts-action';
 
 const ContactDelete = ({ id, name, closeModalDelete }) => {
   const dispatch = useDispatch();
@@ -11,7 +11,12 @@ const ContactDelete = ({ id, name, closeModalDelete }) => {
 
   const deleteContact = () => {
     dispatch(operations.deleteContact(id));
-    if (filter) dispatch(actions.filterContact(''));
+    if (filter) dispatch(filterContact(''));
+  };
+
+  const styleButton = {
+    fontSize: '14px',
+    lineHeight: '1.7',
   };
 
   return (
@@ -26,18 +31,18 @@ const ContactDelete = ({ id, name, closeModalDelete }) => {
         }}
       >
         <Button
-          sx={{ minWidth: '0', fontSize: '14px', lineHeight: '1.7' }}
           size="small"
           variant="contained"
           onClick={deleteContact}
+          sx={{ minWidth: '0', ...styleButton }}
         >
           Ok
         </Button>
         <Button
-          sx={{ fontSize: '14px', lineHeight: '1.7' }}
           size="small"
           variant="contained"
           onClick={closeModalDelete}
+          sx={styleButton}
         >
           Cancel
         </Button>
@@ -49,7 +54,6 @@ const ContactDelete = ({ id, name, closeModalDelete }) => {
 ContactDelete.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  closeModalDelete: PropTypes.func,
 };
 
 export default ContactDelete;

@@ -4,7 +4,7 @@ import * as operations from 'redux/contacts/contacts-operations';
 import * as actions from 'redux/contacts/contacts-action';
 
 const itemsReducer = createReducer(initialState.contacts.items, {
-  [operations.getContact.fulfilled]: (_, { payload }) => payload,
+  [operations.getContact.fulfilled]: (_, { payload }) => payload.contacts,
   [operations.addContact.fulfilled]: (state, { payload }) => [
     payload,
     ...state,
@@ -21,11 +21,16 @@ const itemsReducer = createReducer(initialState.contacts.items, {
     state.map(element => (element._id === payload._id ? payload : element)),
 });
 
+const countReducer = createReducer(initialState.contacts.count, {
+  [operations.getContact.fulfilled]: (_, { payload }) => payload.countDocuments,
+});
+
 const filterReducer = createReducer(initialState.contacts.filter, {
   [actions.filterContact]: (_, { payload }) => payload,
 });
 
 export const contactsReducer = combineReducers({
   items: itemsReducer,
+  count: countReducer,
   filter: filterReducer,
 });

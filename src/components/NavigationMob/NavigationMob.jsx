@@ -1,20 +1,26 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
 import { Box, IconButton, Menu, MenuItem, Link } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
 const NavigationMob = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = event => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = ({ currentTarget }) => {
+    setAnchorElNav(currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const styleLink = {
+    fontSize: '18px',
+    color: 'inherit',
+    textDecoration: 'none',
   };
 
   return (
@@ -41,29 +47,13 @@ const NavigationMob = () => {
         }}
       >
         <MenuItem onClick={handleCloseNavMenu}>
-          <Link
-            component={RouterLink}
-            to="/"
-            sx={{
-              fontSize: '18px',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <Link component={RouterLink} to="/" sx={styleLink}>
             Home
           </Link>
         </MenuItem>
         {isLoggedIn && (
           <MenuItem onClick={handleCloseNavMenu}>
-            <Link
-              component={RouterLink}
-              to="/contacts"
-              sx={{
-                fontSize: '18px',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
+            <Link component={RouterLink} to="/contacts" sx={styleLink}>
               Contacts
             </Link>
           </MenuItem>

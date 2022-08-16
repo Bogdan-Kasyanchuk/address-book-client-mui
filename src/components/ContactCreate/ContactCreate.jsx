@@ -1,14 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import * as operations from 'redux/contacts/contacts-operations';
-import { getContacts } from 'redux/contacts/contacts-selectors';
-import ModalComp from 'components/ModalComp';
-import SubTitle from 'components/SubTitle/SubTitle';
-import Form from 'components/Form';
-import { existContactCreate } from 'service/existContactService';
-import validation from 'service/validationService';
-import { TITLE_FORM } from 'helpers/constants';
 import {
   Box,
   TextField,
@@ -18,11 +10,19 @@ import {
 } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import * as operations from 'redux/contacts/contacts-operations';
+import { getContacts } from 'redux/contacts/contacts-selectors';
+import ModalComp from 'components/ModalComp';
+import SubTitle from 'components/SubTitle';
+import Form from 'components/Form';
+import { existContactCreate } from 'service/existContactService';
+import validation from 'service/validationService';
+import { TITLE_FORM } from 'helpers/constants';
 
 const ContactCreate = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const {
     handleSubmit,
     control,
@@ -57,6 +57,11 @@ const ContactCreate = () => {
     setIsOpenModal(false);
   };
 
+  const styleButton = {
+    fontSize: '14px',
+    lineHeight: '1.7',
+  };
+
   return (
     <>
       <Button size="medium" variant="contained" onClick={openModal}>
@@ -79,10 +84,10 @@ const ContactCreate = () => {
                   label="Name"
                   variant="outlined"
                   margin="normal"
-                  onChange={e => field.onChange(e)}
+                  title={TITLE_FORM.NAME}
                   error={!!errors.name?.message}
                   helperText={errors.name?.message}
-                  title={TITLE_FORM.NAME}
+                  onChange={e => field.onChange(e)}
                 />
               )}
             />
@@ -99,10 +104,10 @@ const ContactCreate = () => {
                   label="Phone"
                   variant="outlined"
                   margin="normal"
-                  onChange={e => field.onChange(e)}
+                  title={TITLE_FORM.PHONE}
                   error={!!errors.phone?.message}
                   helperText={errors.phone?.message}
-                  title={TITLE_FORM.PHONE}
+                  onChange={e => field.onChange(e)}
                 />
               )}
             />
@@ -119,10 +124,10 @@ const ContactCreate = () => {
                   label="Email"
                   variant="outlined"
                   margin="normal"
-                  onChange={e => field.onChange(e)}
+                  title={TITLE_FORM.EMAIL}
                   error={!!errors.email?.message}
                   helperText={errors.email?.message}
-                  title={TITLE_FORM.EMAIL}
+                  onChange={e => field.onChange(e)}
                 />
               )}
             />
@@ -140,10 +145,10 @@ const ContactCreate = () => {
                   label="Address"
                   variant="outlined"
                   margin="normal"
-                  onChange={e => field.onChange(e)}
+                  title={TITLE_FORM.ADDRES}
                   error={!!errors.address?.message}
                   helperText={errors.address?.message}
-                  title={TITLE_FORM.ADDRES}
+                  onChange={e => field.onChange(e)}
                 />
               )}
             />
@@ -162,10 +167,10 @@ const ContactCreate = () => {
                   margin="normal"
                   multiline
                   maxRows={3}
-                  onChange={e => field.onChange(e)}
+                  title={TITLE_FORM.OTHER}
                   error={!!errors.other?.message}
                   helperText={errors.other?.message}
-                  title={TITLE_FORM.OTHER}
+                  onChange={e => field.onChange(e)}
                 />
               )}
             />
@@ -176,13 +181,8 @@ const ContactCreate = () => {
               render={({ field }) => (
                 <FormControlLabel
                   value="start"
-                  sx={{
-                    justifyContent: 'space-between',
-                    marginTop: '10px',
-                    marginLeft: '0px',
-                    width: '100%',
-                    color: '#828282',
-                  }}
+                  label="Favorite"
+                  labelPlacement="start"
                   control={
                     <Checkbox
                       size="medium"
@@ -193,9 +193,14 @@ const ContactCreate = () => {
                       }}
                     />
                   }
-                  label="Favorite"
-                  labelPlacement="start"
                   onChange={e => field.onChange(e)}
+                  sx={{
+                    justifyContent: 'space-between',
+                    marginTop: '10px',
+                    marginLeft: '0px',
+                    width: '100%',
+                    color: '#828282',
+                  }}
                 />
               )}
             />
@@ -209,17 +214,17 @@ const ContactCreate = () => {
               <Button
                 disabled={buttonDisabled}
                 type="submit"
-                sx={{ minWidth: '0', fontSize: '14px', lineHeight: '1.7' }}
                 size="small"
                 variant="contained"
+                sx={{ minWidth: '0', ...styleButton }}
               >
                 Ok
               </Button>
               <Button
-                sx={{ fontSize: '14px', lineHeight: '1.7' }}
                 size="small"
                 variant="contained"
                 onClick={closeModal}
+                sx={styleButton}
               >
                 Cancel
               </Button>

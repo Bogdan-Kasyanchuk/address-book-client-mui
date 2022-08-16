@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { NavLink as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { AppBar, Container, Toolbar, Box, Link } from '@mui/material';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import Logo from 'components/Logo';
 import NavigationMob from 'components/NavigationMob';
 import Navigation from 'components/Navigation';
@@ -20,8 +20,8 @@ const AppBarComp = () => {
             to="/"
             sx={{
               display: { xs: 'none', md: 'flex' },
-              marginRight: 4,
               alignItems: 'center',
+              marginRight: 4,
               color: 'inherit',
               textDecoration: 'none',
             }}

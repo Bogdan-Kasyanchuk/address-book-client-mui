@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getUserName, getUserAvatarUrl } from 'redux/auth/auth-selectors';
 import {
   Box,
   IconButton,
@@ -11,9 +10,10 @@ import {
   MenuItem,
   ListItem,
 } from '@mui/material';
-import UserEdit from 'components/UserEdit/UserEdit';
+import { getUserName, getUserAvatarUrl } from 'redux/auth/auth-selectors';
+import UserEdit from 'components/UserEdit';
 import ModalComp from 'components/ModalComp';
-import LogOut from 'components/LogOut/LogOut';
+import LogOut from 'components/LogOut';
 
 const UserMenu = () => {
   const userName = useSelector(getUserName);
@@ -24,8 +24,8 @@ const UserMenu = () => {
     logOut: false,
   });
 
-  const handleOpenUserMenu = event => {
-    setAnchorElUser(event.currentTarget);
+  const handleOpenUserMenu = ({ currentTarget }) => {
+    setAnchorElUser(currentTarget);
   };
 
   const handleCloseUserMenu = () => {
@@ -74,6 +74,10 @@ const UserMenu = () => {
     });
   };
 
+  const styleTypography = {
+    fontSize: '18px',
+  };
+
   return (
     <>
       <Box
@@ -99,13 +103,13 @@ const UserMenu = () => {
         </Tooltip>
       </Box>
       <Menu
-        sx={{
-          marginTop: { xs: '8px', sm: '12px' },
-        }}
         anchorEl={anchorElUser}
         keepMounted
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
+        sx={{
+          marginTop: { xs: '8px', sm: '12px' },
+        }}
       >
         <ListItem
           sx={{
@@ -114,32 +118,15 @@ const UserMenu = () => {
           }}
           divider
         >
-          <Typography
-            color="primary"
-            sx={{
-              fontSize: '18px',
-            }}
-          >
+          <Typography color="primary" sx={styleTypography}>
             {userName}
           </Typography>
         </ListItem>
         <MenuItem onClick={openModalEdit}>
-          <Typography
-            sx={{
-              fontSize: '18px',
-            }}
-          >
-            User edit
-          </Typography>
+          <Typography sx={styleTypography}>User edit</Typography>
         </MenuItem>
         <MenuItem onClick={openModalLogOut}>
-          <Typography
-            sx={{
-              fontSize: '18px',
-            }}
-          >
-            Logout
-          </Typography>
+          <Typography sx={styleTypography}>Logout</Typography>
         </MenuItem>
       </Menu>
       <ModalComp open={isOpenModal.edit} handleClose={closeModalEdit}>

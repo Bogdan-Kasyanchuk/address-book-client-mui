@@ -8,7 +8,8 @@ import { getLoading } from 'redux/selectors';
 import AppBarComp from 'components/AppBarComp';
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
-import Spinner from 'components/Spinner/Spinner';
+import Spinner from 'components/Spinner';
+import ButtonUP from 'components/ButtonUP';
 
 const HomePage = lazy(() =>
   import('pages/HomePage' /* webpackChunkName: "Home" */),
@@ -78,6 +79,7 @@ function App() {
           </Suspense>
         </>
       )}
+      <ButtonUP />
     </>
   );
 }

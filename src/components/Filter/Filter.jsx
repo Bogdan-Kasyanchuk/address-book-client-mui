@@ -2,18 +2,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TextField, Button } from '@mui/material';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import { getFilter } from 'redux/contacts/contacts-selectors';
-import * as actions from 'redux/contacts/contacts-action';
+import { filterContact } from 'redux/contacts/contacts-action';
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
 
-  const filterContact = ({ target }) => {
-    dispatch(actions.filterContact(target.value));
+  const handlerFilterContact = ({ target }) => {
+    dispatch(filterContact(target.value));
   };
 
   const filterReset = () => {
-    dispatch(actions.filterContact(''));
+    dispatch(filterContact(''));
   };
 
   return (
@@ -23,10 +23,10 @@ const Filter = () => {
         autoComplete="off"
         value={filter}
         placeholder="Enter name"
-        onChange={filterContact}
         label="Find by name"
         variant="outlined"
         inputProps={{ sx: { paddingTop: '7px', paddingBottom: '6.5px' } }}
+        onChange={handlerFilterContact}
         sx={{
           width: '100%',
           marginRight: '20px',

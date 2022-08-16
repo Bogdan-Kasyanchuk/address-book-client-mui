@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Container } from '@mui/material';
 
 const ContainerComp = ({ children }) => {
@@ -12,10 +11,6 @@ const ContainerComp = ({ children }) => {
       {children}
     </Container>
   );
-};
-
-ContainerComp.propTypes = {
-  children: PropTypes.node,
 };
 
 export default ContainerComp;

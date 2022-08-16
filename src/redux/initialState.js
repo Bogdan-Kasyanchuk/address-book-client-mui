@@ -1,6 +1,7 @@
 const initialState = {
   contacts: {
     items: [],
+    count: {},
     filter: '',
   },
   auth: {

@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
 import { Modal, Box, Divider, Button } from '@mui/material';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTheme } from '@mui/material/styles';
 
 const ModalComp = ({ open, handleClose, children }) => {
+  const theme = useTheme();
+
   return (
     <Modal
       open={open}
       onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
       sx={{
         overflowY: 'auto',
       }}
@@ -22,8 +22,8 @@ const ModalComp = ({ open, handleClose, children }) => {
           transform: 'translate(-50%, -50%)',
           minWidth: '288px',
           maxWidth: '450px',
-          backgroundColor: '#fff',
-          border: '2px solid #1976d2',
+          backgroundColor: theme.palette.common.white,
+          border: `2px solid ${theme.palette.primary.main}`,
           borderRadius: '4px',
           boxShadow: '0px 0px 40px 10px rgba(25, 118, 210, 0.18)',
         }}
@@ -46,9 +46,9 @@ const ModalComp = ({ open, handleClose, children }) => {
             }}
           />
           <Button
-            onClick={handleClose}
             size="small"
             variant="contained"
+            onClick={handleClose}
             sx={{
               minWidth: '0',
               paddingLeft: '4px',
@@ -63,12 +63,6 @@ const ModalComp = ({ open, handleClose, children }) => {
       </Box>
     </Modal>
   );
-};
-
-ModalComp.propTypes = {
-  open: PropTypes.bool,
-  handleClose: PropTypes.func,
-  children: PropTypes.node,
 };
 
 export default ModalComp;

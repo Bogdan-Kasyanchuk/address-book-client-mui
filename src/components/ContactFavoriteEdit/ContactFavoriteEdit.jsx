@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
-import * as operations from 'redux/contacts/contacts-operations';
 import PropTypes from 'prop-types';
-import Checkbox from '@mui/material/Checkbox';
+import { Checkbox } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import * as operations from 'redux/contacts/contacts-operations';
 
 const ContactFavoriteEdit = ({ favorite, id }) => {
   const dispatch = useDispatch();
+
   const editFavoriteContact = ({ target }) => {
     const editedFavoriteContact = {
       id,
@@ -15,24 +16,15 @@ const ContactFavoriteEdit = ({ favorite, id }) => {
     dispatch(operations.editFavoriteContact(editedFavoriteContact));
   };
 
+  const styleIcon = {
+    width: '32px',
+    height: '32px',
+  };
+
   return (
     <Checkbox
-      icon={
-        <StarBorderIcon
-          sx={{
-            width: '32px',
-            height: '32px',
-          }}
-        />
-      }
-      checkedIcon={
-        <StarIcon
-          sx={{
-            width: '32px',
-            height: '32px',
-          }}
-        />
-      }
+      icon={<StarBorderIcon sx={styleIcon} />}
+      checkedIcon={<StarIcon sx={styleIcon} />}
       checked={favorite}
       onChange={editFavoriteContact}
       sx={{
@@ -44,7 +36,6 @@ const ContactFavoriteEdit = ({ favorite, id }) => {
 
 ContactFavoriteEdit.propTypes = {
   id: PropTypes.string.isRequired,
-  favorite: PropTypes.bool.isRequired,
 };
 
 export default ContactFavoriteEdit;

@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Grid, Card, Box, Button, Avatar } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
+import { useTheme } from '@mui/material/styles';
 import ContactFavoriteEdit from 'components/ContactFavoriteEdit';
-import ContactContent from 'components/ContactContent';
+import ContactContent from 'components/ContactContentList';
 import ModalComp from 'components/ModalComp';
 import ContactEdit from 'components/ContactEdit';
 import ContactDelete from 'components/ContactDelete';
 
 const ContactItem = ({ element }) => {
+  const theme = useTheme();
   const [isOpenModal, setIsOpenModal] = useState({
     edit: false,
     delete: false,
@@ -55,6 +56,12 @@ const ContactItem = ({ element }) => {
     });
   };
 
+  const styleButton = {
+    minWidth: '0',
+    paddingLeft: '4px',
+    paddingRight: '4px',
+  };
+
   return (
     <>
       <Grid
@@ -70,7 +77,7 @@ const ContactItem = ({ element }) => {
             position: 'relative',
             height: '100%',
             padding: '10px',
-            border: '1px solid #1976d2',
+            border: `1px solid ${theme.palette.primary.main}`,
           }}
         >
           <Box
@@ -91,26 +98,18 @@ const ContactItem = ({ element }) => {
               }}
             >
               <Button
-                onClick={openModalEdit}
                 size="small"
                 variant="contained"
-                sx={{
-                  minWidth: '0',
-                  paddingLeft: '4px',
-                  paddingRight: '4px',
-                }}
+                onClick={openModalEdit}
+                sx={styleButton}
               >
                 <EditIcon />
               </Button>
               <Button
-                onClick={openModalDelete}
                 size="small"
                 variant="contained"
-                sx={{
-                  minWidth: '0',
-                  paddingLeft: '4px',
-                  paddingRight: '4px',
-                }}
+                onClick={openModalDelete}
+                sx={styleButton}
               >
                 <DeleteOutlineIcon />
               </Button>
@@ -140,13 +139,6 @@ const ContactItem = ({ element }) => {
       </ModalComp>
     </>
   );
-};
-
-ContactItem.propTypes = {
-  element: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    avatarUrl: PropTypes.string.isRequired,
-  }),
 };
 
 export default ContactItem;

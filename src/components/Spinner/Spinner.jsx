@@ -1,5 +1,5 @@
+import { RotatingLines } from 'react-loader-spinner';
 import { Box } from '@mui/material';
-import Loader from 'react-loader-spinner';
 import { useTheme } from '@mui/material/styles';
 
 const Spinner = () => {
@@ -15,11 +15,11 @@ const Spinner = () => {
         transform: 'translate(-50%, 0px)',
       }}
     >
-      <Loader
-        type="Oval"
-        color={theme.palette.primary.main}
-        height={50}
-        width={50}
+      <RotatingLines
+        strokeColor={theme.palette.primary.main}
+        strokeWidth="4"
+        animationDuration="1"
+        width="75"
       />
     </Box>
   );

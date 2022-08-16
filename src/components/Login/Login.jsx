@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import * as operations from 'redux/auth/auth-operations';
 import { TextField, Button } from '@mui/material';
+import * as operations from 'redux/auth/auth-operations';
 import Form from 'components/Form';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
@@ -42,10 +42,10 @@ const Login = () => {
             label="Email"
             variant="outlined"
             margin="normal"
-            onChange={e => field.onChange(e)}
+            title={TITLE_FORM.EMAIL}
             error={!!errors.email?.message}
             helperText={errors.email?.message}
-            title={TITLE_FORM.EMAIL}
+            onChange={e => field.onChange(e)}
           />
         )}
       />
@@ -62,10 +62,10 @@ const Login = () => {
             label="Password"
             variant="outlined"
             margin="normal"
-            onChange={e => field.onChange(e)}
+            title={TITLE_FORM.PASSWORD}
             error={!!errors.password?.message}
             helperText={errors.password?.message}
-            title={TITLE_FORM.PASSWORD}
+            onChange={e => field.onChange(e)}
           />
         )}
       />

@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
+import { TextField, Button } from '@mui/material';
 import * as operations from 'redux/auth/auth-operations';
 import Form from 'components/Form';
-import { TextField, Button } from '@mui/material';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
 
@@ -44,10 +44,10 @@ const Register = () => {
             label="Name"
             variant="outlined"
             margin="normal"
-            onChange={e => field.onChange(e)}
+            title={TITLE_FORM.NAME}
             error={!!errors.name?.message}
             helperText={errors.name?.message}
-            title={TITLE_FORM.NAME}
+            onChange={e => field.onChange(e)}
           />
         )}
       />
@@ -64,10 +64,10 @@ const Register = () => {
             label="Email"
             variant="outlined"
             margin="normal"
-            onChange={e => field.onChange(e)}
+            title={TITLE_FORM.EMAIL}
             error={!!errors.email?.message}
             helperText={errors.email?.message}
-            title={TITLE_FORM.EMAIL}
+            onChange={e => field.onChange(e)}
           />
         )}
       />
@@ -84,19 +84,19 @@ const Register = () => {
             label="Password"
             variant="outlined"
             margin="normal"
-            onChange={e => field.onChange(e)}
+            title={TITLE_FORM.PASSWORD}
             error={!!errors.password?.message}
             helperText={errors.password?.message}
-            title={TITLE_FORM.PASSWORD}
+            onChange={e => field.onChange(e)}
           />
         )}
       />
       <Button
         size="large"
+        type="submit"
         fullWidth
         variant="contained"
         disabled={buttonDisabled}
-        type="submit"
         sx={{
           marginTop: '16px',
           paddingTop: '7px',
