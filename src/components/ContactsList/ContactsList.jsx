@@ -18,9 +18,9 @@ const ContactsList = ({ searchParams }) => {
       }}
     >
       {filteredContacts.map(
-        (element, index) =>
+        element =>
           (searchParams && !element.favorite) || (
-            <ContactItem key={element._id} element={element} index={index} />
+            <ContactItem key={element._id} element={element} />
           ),
       )}
     </Grid>

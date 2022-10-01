@@ -1,4 +1,4 @@
-const TITLE_FORM = {
+export const TITLE_FORM = {
   NAME: "Name may contain only letters, apostrophe, dash and spaces. For example: Adrian, Jacob Mercer, Charles de Batz, de Castelmore, d'Artagnan, Van-Dame",
   PHONE:
     'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example: +38(033)-111-11-11, 033-111-11-11',
@@ -10,13 +10,8 @@ const TITLE_FORM = {
     'The password must be digits and letters and capital letters and special characters. For example: bg2H3p@gR8',
 };
 
-const LIMIT = {
+export const LIMIT = {
   NAME_MIN: 3,
   PASSWORD_MIN: 8,
   PHONE_MIN: 10,
-};
-
-module.exports = {
-  TITLE_FORM,
-  LIMIT,
 };
