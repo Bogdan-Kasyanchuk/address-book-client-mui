@@ -12,6 +12,7 @@ const ContactDelete = ({ id, name, closeModalDelete }) => {
   const deleteContact = () => {
     dispatch(operations.deleteContact(id));
     if (filter) dispatch(filterContact(''));
+    closeModalDelete();
   };
 
   const styleButton = {

@@ -11,7 +11,7 @@ const Spinner = () => {
         position: 'fixed',
         top: '50vh',
         left: '50vw',
-        zIndex: '1000',
+        zIndex: '5000',
         transform: 'translate(-50%, 0px)',
       }}
     >
